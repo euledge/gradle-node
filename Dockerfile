@@ -4,6 +4,6 @@ LABEL maintainer "euledge"
 
 # nvm install
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-RUN source ~/.bashrc
+RUN . ~/.nvm/nvm.sh
 # node install
-RUN nvm install
+RUN nvm install 10
