@@ -2,10 +2,12 @@ FROM gradle:4.6-jdk8
 
 LABEL maintainer "euledge"
 
-# nvm install
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-RUN export NVM_DIR="$HOME/.nvm"
-RUN . "$NVM_DIR/nvm.sh"
-RUN . "$NVM_DIR/bash_completion"
-# node install
-RUN nvm install 10
+USER root
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    nodejs \
+    npm \
+    && apt-get -y clean \
+    && rm -rf /var/lib/apt/lists/*
